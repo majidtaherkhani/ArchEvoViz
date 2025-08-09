@@ -1,0 +1,144 @@
+@startuml
+skinparam classAttributeIconSize 0
+left to right direction
+class ApiGatewayApplication {
+}
+class WebConfig {
+}
+class ClientsServiceApplication {
+}
+class OwnerService {
+  + ownerRepository: OwnerRepository
+}
+class PetService {
+  + petRepository: PetRepository
+}
+class OwnerResource {
+  + ownerService: OwnerService
+}
+class PetResource {
+  + petService: PetService
+  + ownerService: OwnerService
+}
+class PetValidator {
+}
+class Person {
+  + firstName: String
+  + lastName: String
+}
+class Owner {
+  + address: String
+  + city: String
+  + telephone: String
+  + pets: Set
+}
+interface OwnerRepository {
+}
+class Pet {
+  + birthDate: Date
+  + type: PetType
+  + owner: Owner
+}
+interface PetRepository {
+}
+class PetType {
+}
+class BaseEntity {
+  + id: Integer
+}
+class NamedEntity {
+  + name: String
+}
+class ConfigServerApplication {
+}
+class DiscoveryServerApplication {
+}
+class CallMonitoringAspect {
+  + enabled: boolean
+  + callCount: int
+  + accumulatedCallTime: long
+}
+class Monitored {
+}
+class MonitoringConfig {
+}
+class VetsServiceApplication {
+}
+class VetService {
+  + vetRepository: VetRepository
+}
+class Person {
+  + firstName: String
+  + lastName: String
+}
+class Specialty {
+}
+class Vet {
+  + specialties: Set
+}
+interface VetRepository {
+}
+class Vets {
+  + vets: List
+}
+class CacheConfig {
+  + vetsProperties: VetsProperties
+}
+class VetsProperties {
+  + cache: Cache
+}
+class BaseEntity {
+  + id: Integer
+}
+class NamedEntity {
+  + name: String
+}
+class VetResource {
+  + vetService: VetService
+}
+class VisitsServiceApplication {
+}
+class VisitService {
+  + visitRepository: VisitRepository
+}
+class VisitResource {
+  + visitService: VisitService
+}
+class Visit {
+  + date: Date
+  + description: String
+  + petId: int
+}
+interface VisitRepository {
+}
+class Person {
+  + firstName: String
+  + lastName: String
+}
+class BaseEntity {
+  + id: Integer
+}
+class NamedEntity {
+  + name: String
+}
+BaseEntity <|-- NamedEntity
+BaseEntity <|-- Person
+BaseEntity <|-- Visit
+CacheConfig --> VetsProperties
+NamedEntity <|-- Pet
+NamedEntity <|-- PetType
+NamedEntity <|-- Specialty
+OwnerResource --> OwnerService
+OwnerService --> OwnerRepository
+Person <|-- Owner
+Person <|-- Vet
+Pet --> Owner
+Pet --> PetType
+PetResource --> OwnerService
+PetResource --> PetService
+PetService --> PetRepository
+VetResource --> VetService
+VetService --> VetRepository
+VisitResource --> VisitService
+VisitService --> VisitRepository
+@enduml

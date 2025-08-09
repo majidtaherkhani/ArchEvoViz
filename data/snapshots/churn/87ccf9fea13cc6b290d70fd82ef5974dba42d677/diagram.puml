@@ -1,0 +1,137 @@
+@startuml
+skinparam classAttributeIconSize 0
+left to right direction
+class BaseEntity {
+  + id: Integer
+}
+interface Clinic {
+}
+class NamedEntity {
+  + name: String
+}
+class Owner {
+  + address: String
+  + city: String
+  + telephone: String
+  + pets: Set
+}
+class Person {
+  + firstName: String
+  + lastName: String
+}
+class Pet {
+  + birthDate: Date
+  + type: PetType
+  + owner: Owner
+  + visits: Set
+}
+class PetType {
+}
+class Specialty {
+}
+class Vet {
+  + specialties: Set
+}
+class Vets {
+  + vets: List
+}
+class Visit {
+  + date: Date
+  + description: String
+  + pet: Pet
+}
+class AbstractTraceAspect {
+  + logger: Logger
+}
+class CallMonitoringAspect {
+  + isEnabled: boolean
+  + callCount: int
+  + accumulatedCallTime: long
+}
+class UsageLogAspect {
+  + historySize: int
+  + namesRequested: List
+}
+class HibernateClinic {
+  + sessionFactory: SessionFactory
+}
+class JdbcPet {
+  + typeId: int
+  + ownerId: int
+}
+class SimpleJdbcClinic {
+  + logger: Logger
+  + simpleJdbcTemplate: JdbcTemplate
+  + insertOwner: SimpleJdbcInsert
+  + insertPet: SimpleJdbcInsert
+  + insertVisit: SimpleJdbcInsert
+  + vets: List
+}
+interface SimpleJdbcClinicMBean {
+}
+class EntityManagerClinic {
+  + em: EntityManager
+}
+class EntityUtils {
+}
+class OwnerValidator {
+}
+class PetValidator {
+}
+class VisitValidator {
+}
+class AddOwnerForm {
+  + clinic: Clinic
+}
+class AddPetForm {
+  + clinic: Clinic
+}
+class AddVisitForm {
+  + clinic: Clinic
+}
+class ClinicBindingInitializer {
+  + clinic: Clinic
+}
+class ClinicController {
+  + clinic: Clinic
+}
+class EditOwnerForm {
+  + clinic: Clinic
+}
+class EditPetForm {
+  + clinic: Clinic
+}
+class FindOwnersForm {
+  + clinic: Clinic
+}
+class PetTypeEditor {
+  + clinic: Clinic
+}
+class VisitsAtomView {
+}
+AddOwnerForm --> Clinic
+AddPetForm --> Clinic
+AddVisitForm --> Clinic
+BaseEntity <|-- NamedEntity
+BaseEntity <|-- Person
+BaseEntity <|-- Visit
+Clinic <|.. EntityManagerClinic
+Clinic <|.. HibernateClinic
+Clinic <|.. SimpleJdbcClinic
+ClinicBindingInitializer --> Clinic
+ClinicController --> Clinic
+EditOwnerForm --> Clinic
+EditPetForm --> Clinic
+FindOwnersForm --> Clinic
+NamedEntity <|-- Pet
+NamedEntity <|-- PetType
+NamedEntity <|-- Specialty
+Person <|-- Owner
+Person <|-- Vet
+Pet --> Owner
+Pet --> PetType
+Pet <|-- JdbcPet
+PetTypeEditor --> Clinic
+SimpleJdbcClinicMBean <|.. SimpleJdbcClinic
+Visit --> Pet
+@enduml

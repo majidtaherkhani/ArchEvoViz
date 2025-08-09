@@ -1,0 +1,51 @@
+# Commit 3510dbfc
+- Date: 2016-09-20
+- Churn: 144975
+### Removed classes
+- EntityUtils
+### Unchanged classes
+- BaseEntity
+- CallMonitoringAspect
+- ClinicService
+- ClinicServiceImpl
+- NamedEntity
+- Owner
+- OwnerRepository
+- OwnerResource
+- Person
+- Pet
+- PetClinicApplication
+- PetRepository
+- PetResource
+- PetType
+- PetValidator
+- Specialty
+- Vet
+- VetRepository
+- VetResource
+- Vets
+- Visit
+- VisitController
+- VisitRepository
+
+### Unchanged relationships
+- BaseEntity <|-- NamedEntity
+- BaseEntity <|-- Person
+- BaseEntity <|-- Visit
+- ClinicService <|.. ClinicServiceImpl
+- ClinicServiceImpl --> OwnerRepository
+- ClinicServiceImpl --> PetRepository
+- ClinicServiceImpl --> VetRepository
+- ClinicServiceImpl --> VisitRepository
+- NamedEntity <|-- Pet
+- NamedEntity <|-- PetType
+- NamedEntity <|-- Specialty
+- OwnerResource --> ClinicService
+- Person <|-- Owner
+- Person <|-- Vet
+- Pet --> Owner
+- Pet --> PetType
+- PetResource --> ClinicService
+- VetResource --> ClinicService
+- Visit --> Pet
+- VisitController --> ClinicService

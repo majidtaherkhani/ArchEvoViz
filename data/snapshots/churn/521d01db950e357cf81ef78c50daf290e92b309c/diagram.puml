@@ -1,0 +1,234 @@
+@startuml
+skinparam classAttributeIconSize 0
+left to right direction
+class BaseEntity {
+  + id: Integer
+}
+interface Clinic {
+}
+class NamedEntity {
+  + name: String
+}
+class Owner {
+  + address: String
+  + city: String
+  + telephone: String
+  + pets: Set
+}
+class Person {
+  + firstName: String
+  + lastName: String
+}
+class Pet {
+  + birthDate: Date
+  + type: PetType
+  + owner: Owner
+  + visits: Set
+}
+class PetType {
+}
+class Specialty {
+}
+class Vet {
+  + specialties: Set
+}
+class Vets {
+  + vets: List
+}
+class Visit {
+  + date: Date
+  + description: String
+  + pet: Pet
+}
+class AbstractTraceAspect {
+  + logger: Log
+}
+class CallMonitoringAspect {
+  + isEnabled: boolean
+  + callCount: int
+  + accumulatedCallTime: long
+}
+class UsageLogAspect {
+  + historySize: int
+  + namesRequested: List
+}
+class DbcpDataSourceFactory {
+  + driverClassName: String
+  + url: String
+  + username: String
+  + password: String
+  + populate: boolean
+  + schemaLocation: Resource
+  + dataLocation: Resource
+  + dropLocation: Resource
+  + dataSource: BasicDataSource
+}
+class HibernateClinic {
+  + sessionFactory: SessionFactory
+}
+class JdbcPet {
+  + typeId: int
+  + ownerId: int
+}
+class SimpleJdbcClinic {
+  + logger: Log
+  + simpleJdbcTemplate: SimpleJdbcTemplate
+  + insertOwner: SimpleJdbcInsert
+  + insertPet: SimpleJdbcInsert
+  + insertVisit: SimpleJdbcInsert
+  + vets: List
+}
+interface SimpleJdbcClinicMBean {
+}
+class EntityManagerClinic {
+  + em: EntityManager
+}
+class EssentialsHSQLPlatformWithNativeSequence {
+  + serialVersionUID: long
+}
+class EntityUtils {
+}
+class OwnerValidator {
+}
+class PetValidator {
+}
+class VisitValidator {
+}
+class AddOwnerForm {
+  + clinic: Clinic
+}
+class AddPetForm {
+  + clinic: Clinic
+}
+class AddVisitForm {
+  + clinic: Clinic
+}
+class ClinicBindingInitializer {
+  + clinic: Clinic
+}
+class ClinicController {
+  + clinic: Clinic
+}
+class EditOwnerForm {
+  + clinic: Clinic
+}
+class EditPetForm {
+  + clinic: Clinic
+}
+class FindOwnersForm {
+  + clinic: Clinic
+}
+class PetTypeEditor {
+  + clinic: Clinic
+}
+class VisitsAtomView {
+}
+class HomeController {
+}
+class Appointment {
+  + owner: String
+  + ownerPhone: String
+  + pet: String
+  + notes: String
+  + dateTime: Date
+}
+interface AppointmentBook {
+}
+class AppointmentForm {
+  + doctor: Long
+  + owner: Long
+  + pet: String
+  + date: Date
+  + time: Date
+  + notes: String
+}
+class Appointments {
+  + vetAppointments: Map
+}
+class AppointmentsController {
+  + appointmentBook: AppointmentBook
+}
+class StubAppointmentBook {
+}
+class Owner {
+  + id: Long
+  + firstName: String
+  + lastName: String
+  + address: String
+  + city: String
+  + phone: String
+}
+class OwnerController {
+  + repository: OwnerRepository
+}
+interface OwnerRepository {
+}
+class OwnersController {
+  + repository: OwnerRepository
+}
+class OwnerSearchForm {
+  + lastName: String
+}
+class StubOwnerRepository {
+}
+class Gender {
+}
+class Pet {
+  + name: String
+  + species: String
+  + breed: String
+  + gender: Gender
+  + birthDate: Date
+  + weight: Measurement
+}
+class PetController {
+  + repository: PetRepository
+}
+interface PetRepository {
+}
+class StubPetRepository {
+}
+interface ExternalContext {
+}
+class Measurement {
+  + amount: BigDecimal
+  + unit: Unit
+}
+class Unit {
+}
+AddOwnerForm --> Clinic
+AddPetForm --> Clinic
+AddVisitForm --> Clinic
+AppointmentBook <|.. StubAppointmentBook
+AppointmentsController --> AppointmentBook
+BaseEntity <|-- NamedEntity
+BaseEntity <|-- Person
+BaseEntity <|-- Visit
+Clinic <|.. EntityManagerClinic
+Clinic <|.. HibernateClinic
+Clinic <|.. SimpleJdbcClinic
+ClinicBindingInitializer --> Clinic
+ClinicController --> Clinic
+EditOwnerForm --> Clinic
+EditPetForm --> Clinic
+FindOwnersForm --> Clinic
+Measurement --> Unit
+NamedEntity <|-- Pet
+NamedEntity <|-- PetType
+NamedEntity <|-- Specialty
+OwnerController --> OwnerRepository
+OwnerRepository <|.. StubOwnerRepository
+OwnersController --> OwnerRepository
+Person <|-- Owner
+Person <|-- Vet
+Pet --> Gender
+Pet --> Measurement
+Pet --> Owner
+Pet --> PetType
+Pet <|-- JdbcPet
+PetController --> PetRepository
+PetRepository <|.. StubPetRepository
+PetTypeEditor --> Clinic
+SimpleJdbcClinicMBean <|.. SimpleJdbcClinic
+Visit --> Pet
+@enduml

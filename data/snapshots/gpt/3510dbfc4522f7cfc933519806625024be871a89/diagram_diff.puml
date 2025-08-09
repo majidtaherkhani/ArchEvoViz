@@ -1,0 +1,172 @@
+@startuml
+skinparam classAttributeIconSize 0
+left to right direction
+package "Classes (Removed · Unchanged · Added)" <<Rectangle>> {
+  class CrashController <<REMOVED>> #LightSalmon {
+  }
+  class EntityUtils <<REMOVED>> #LightSalmon {
+  }
+  class JdbcOwnerRepositoryImpl <<REMOVED>> #LightSalmon {
+    + visitRepository: VisitRepository
+    + namedParameterJdbcTemplate: NamedParameterJdbcTemplate
+    + insertOwner: SimpleJdbcInsert
+  }
+  class JdbcPet <<REMOVED>> #LightSalmon {
+    + typeId: int
+    + ownerId: int
+  }
+  class JdbcPetRepositoryImpl <<REMOVED>> #LightSalmon {
+    + namedParameterJdbcTemplate: NamedParameterJdbcTemplate
+    + insertPet: SimpleJdbcInsert
+    + ownerRepository: OwnerRepository
+    + visitRepository: VisitRepository
+  }
+  class JdbcPetRowMapper <<REMOVED>> #LightSalmon {
+  }
+  class JdbcVetRepositoryImpl <<REMOVED>> #LightSalmon {
+    + jdbcTemplate: JdbcTemplate
+  }
+  class JdbcVisitRepositoryImpl <<REMOVED>> #LightSalmon {
+    + jdbcTemplate: JdbcTemplate
+    + insertVisit: SimpleJdbcInsert
+  }
+  class JpaOwnerRepositoryImpl <<REMOVED>> #LightSalmon {
+    + em: EntityManager
+  }
+  class JpaPetRepositoryImpl <<REMOVED>> #LightSalmon {
+    + em: EntityManager
+  }
+  class JpaVetRepositoryImpl <<REMOVED>> #LightSalmon {
+    + em: EntityManager
+  }
+  class JpaVisitRepositoryImpl <<REMOVED>> #LightSalmon {
+    + em: EntityManager
+  }
+  class PetController <<REMOVED>> #LightSalmon {
+    + clinicService: ClinicService
+  }
+  class PetTypeFormatter <<REMOVED>> #LightSalmon {
+    + clinicService: ClinicService
+  }
+  interface SpringDataOwnerRepository <<REMOVED>> #LightSalmon {
+  }
+  interface SpringDataPetRepository <<REMOVED>> #LightSalmon {
+  }
+  interface SpringDataVetRepository <<REMOVED>> #LightSalmon {
+  }
+  interface SpringDataVisitRepository <<REMOVED>> #LightSalmon {
+  }
+  class BaseEntity {
+    + id: Integer
+  }
+  class CallMonitoringAspect {
+    + enabled: boolean
+    + callCount: int
+    + accumulatedCallTime: long
+  }
+  interface ClinicService {
+  }
+  class ClinicServiceImpl {
+    + petRepository: PetRepository
+    + vetRepository: VetRepository
+    + ownerRepository: OwnerRepository
+    + visitRepository: VisitRepository
+  }
+  class NamedEntity {
+    + name: String
+  }
+  class Owner {
+    + address: String
+    + city: String
+    + telephone: String
+    + pets: Set
+  }
+  interface OwnerRepository {
+  }
+  class OwnerResource {
+    + clinicService: ClinicService
+  }
+  class Person {
+    + firstName: String
+    + lastName: String
+  }
+  class Pet {
+    + birthDate: Date
+    + type: PetType
+    + owner: Owner
+    + visits: Set
+  }
+  interface PetRepository {
+  }
+  class PetType {
+  }
+  class PetValidator {
+  }
+  class Specialty {
+  }
+  class Vet {
+    + specialties: Set
+  }
+  interface VetRepository {
+  }
+  class VetResource {
+    + clinicService: ClinicService
+  }
+  class Vets {
+    + vets: List
+  }
+  class Visit {
+    + date: Date
+    + description: String
+    + pet: Pet
+  }
+  class VisitController {
+    + clinicService: ClinicService
+  }
+  interface VisitRepository {
+  }
+  class PetClinicApplication <<ADDED>> #LightGreen {
+  }
+  class PetResource <<ADDED>> #LightGreen {
+    + clinicService: ClinicService
+  }
+}
+JdbcOwnerRepositoryImpl -[#red,dotted]-> VisitRepository
+JdbcPetRepositoryImpl -[#red,dotted]-> OwnerRepository
+JdbcPetRepositoryImpl -[#red,dotted]-> VisitRepository
+OwnerRepository <|--[#red,dotted] SpringDataOwnerRepository
+OwnerRepository <|..[#red,dotted] JdbcOwnerRepositoryImpl
+OwnerRepository <|..[#red,dotted] JpaOwnerRepositoryImpl
+Pet <|--[#red,dotted] JdbcPet
+PetController -[#red,dotted]-> ClinicService
+PetRepository <|--[#red,dotted] SpringDataPetRepository
+PetRepository <|..[#red,dotted] JdbcPetRepositoryImpl
+PetRepository <|..[#red,dotted] JpaPetRepositoryImpl
+PetTypeFormatter -[#red,dotted]-> ClinicService
+VetRepository <|--[#red,dotted] SpringDataVetRepository
+VetRepository <|..[#red,dotted] JdbcVetRepositoryImpl
+VetRepository <|..[#red,dotted] JpaVetRepositoryImpl
+VisitRepository <|--[#red,dotted] SpringDataVisitRepository
+VisitRepository <|..[#red,dotted] JdbcVisitRepositoryImpl
+VisitRepository <|..[#red,dotted] JpaVisitRepositoryImpl
+BaseEntity <|-- NamedEntity
+BaseEntity <|-- Person
+BaseEntity <|-- Visit
+ClinicService <|.. ClinicServiceImpl
+ClinicServiceImpl --> OwnerRepository
+ClinicServiceImpl --> PetRepository
+ClinicServiceImpl --> VetRepository
+ClinicServiceImpl --> VisitRepository
+NamedEntity <|-- Pet
+NamedEntity <|-- PetType
+NamedEntity <|-- Specialty
+OwnerResource --> ClinicService
+Person <|-- Owner
+Person <|-- Vet
+Pet --> Owner
+Pet --> PetType
+VetResource --> ClinicService
+Visit --> Pet
+VisitController --> ClinicService
+PetResource -[#green,dotted]-> ClinicService
+@enduml

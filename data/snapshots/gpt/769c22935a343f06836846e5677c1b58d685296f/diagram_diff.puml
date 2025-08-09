@@ -1,0 +1,143 @@
+@startuml
+skinparam classAttributeIconSize 0
+left to right direction
+package "Classes (Removed · Unchanged · Added)" <<Rectangle>> {
+  class ApiGatewayApplication {
+  }
+  class ApiGatewayController {
+    + customersServiceClient: CustomersServiceClient
+    + visitsServiceClient: VisitsServiceClient
+  }
+  class CacheConfig {
+    + vetsProperties: VetsProperties
+  }
+  class CallMonitoringAspect {
+    + enabled: boolean
+    + callCount: int
+    + accumulatedCallTime: long
+  }
+  class ConfigServerApplication {
+  }
+  class CustomersServiceApplication {
+  }
+  class CustomersServiceClient {
+    + loadBalancedRestTemplate: RestTemplate
+  }
+  class DiscoveryServerApplication {
+  }
+  class Monitored {
+  }
+  class MonitoringConfig {
+  }
+  class Owner {
+    + id: Integer
+    + firstName: String
+    + lastName: String
+    + address: String
+    + city: String
+    + telephone: String
+    + pets: Set
+  }
+  class OwnerDetails {
+    + id: int
+    + firstName: String
+    + lastName: String
+    + address: String
+    + city: String
+    + telephone: String
+    + pets: List
+  }
+  interface OwnerRepository {
+  }
+  class OwnerResource {
+    + ownerRepository: OwnerRepository
+  }
+  class Pet {
+    + id: Integer
+    + name: String
+    + birthDate: Date
+    + type: PetType
+    + owner: Owner
+  }
+  class PetDetails {
+    + id: long
+    + name: String
+    + owner: String
+    + birthDate: Date
+    + type: PetType
+  }
+  interface PetRepository {
+  }
+  class PetRequest {
+    + id: int
+    + birthDate: Date
+    + name: String
+    + typeId: int
+  }
+  class PetResource {
+    + petRepository: PetRepository
+    + ownerRepository: OwnerRepository
+  }
+  class PetType {
+    + id: Integer
+    + name: String
+  }
+  class Specialty {
+    + id: Integer
+    + name: String
+  }
+  class Vet {
+    + id: Integer
+    + firstName: String
+    + lastName: String
+    + specialties: Set
+  }
+  interface VetRepository {
+  }
+  class VetResource {
+    + vetRepository: VetRepository
+  }
+  class VetsProperties {
+    + cache: Cache
+  }
+  class VetsServiceApplication {
+  }
+  class Visit {
+    + id: Integer
+    + date: Date
+    + description: String
+    + petId: int
+  }
+  class VisitDetails {
+    + id: int
+    + petId: int
+    + date: String
+    + description: String
+  }
+  interface VisitRepository {
+  }
+  class VisitResource {
+    + visitRepository: VisitRepository
+  }
+  class VisitsServiceApplication {
+  }
+  class VisitsServiceClient {
+    + loadBalancedRestTemplate: RestTemplate
+  }
+  class WebConfig {
+  }
+  class ZipkinServer {
+  }
+}
+ApiGatewayController --> CustomersServiceClient
+ApiGatewayController --> VisitsServiceClient
+CacheConfig --> VetsProperties
+OwnerResource --> OwnerRepository
+Pet --> Owner
+Pet --> PetType
+PetDetails --> PetType
+PetResource --> OwnerRepository
+PetResource --> PetRepository
+VetResource --> VetRepository
+VisitResource --> VisitRepository
+@enduml

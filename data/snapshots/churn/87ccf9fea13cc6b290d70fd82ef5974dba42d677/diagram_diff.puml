@@ -1,0 +1,220 @@
+@startuml
+skinparam classAttributeIconSize 0
+left to right direction
+package "Classes (Removed · Unchanged · Added)" <<Rectangle>> {
+  class Appointment <<REMOVED>> #LightSalmon {
+    + owner: String
+    + ownerPhone: String
+    + pet: String
+    + notes: String
+    + dateTime: Date
+  }
+  interface AppointmentBook <<REMOVED>> #LightSalmon {
+  }
+  class AppointmentForm <<REMOVED>> #LightSalmon {
+    + doctor: Long
+    + owner: Long
+    + pet: String
+    + date: Date
+    + time: Date
+    + notes: String
+  }
+  class Appointments <<REMOVED>> #LightSalmon {
+    + vetAppointments: Map
+  }
+  class AppointmentsController <<REMOVED>> #LightSalmon {
+    + appointmentBook: AppointmentBook
+  }
+  class DbcpDataSourceFactory <<REMOVED>> #LightSalmon {
+    + driverClassName: String
+    + url: String
+    + username: String
+    + password: String
+    + populate: boolean
+    + schemaLocation: Resource
+    + dataLocation: Resource
+    + dropLocation: Resource
+    + dataSource: BasicDataSource
+  }
+  class EssentialsHSQLPlatformWithNativeSequence <<REMOVED>> #LightSalmon {
+    + serialVersionUID: long
+  }
+  interface ExternalContext <<REMOVED>> #LightSalmon {
+  }
+  class Gender <<REMOVED>> #LightSalmon {
+  }
+  class HomeController <<REMOVED>> #LightSalmon {
+  }
+  class Measurement <<REMOVED>> #LightSalmon {
+    + amount: BigDecimal
+    + unit: Unit
+  }
+  class OwnerController <<REMOVED>> #LightSalmon {
+    + repository: OwnerRepository
+  }
+  interface OwnerRepository <<REMOVED>> #LightSalmon {
+  }
+  class OwnerSearchForm <<REMOVED>> #LightSalmon {
+    + lastName: String
+  }
+  class OwnersController <<REMOVED>> #LightSalmon {
+    + repository: OwnerRepository
+  }
+  class PetController <<REMOVED>> #LightSalmon {
+    + repository: PetRepository
+  }
+  interface PetRepository <<REMOVED>> #LightSalmon {
+  }
+  class StubAppointmentBook <<REMOVED>> #LightSalmon {
+  }
+  class StubOwnerRepository <<REMOVED>> #LightSalmon {
+  }
+  class StubPetRepository <<REMOVED>> #LightSalmon {
+  }
+  class Unit <<REMOVED>> #LightSalmon {
+  }
+  class AbstractTraceAspect {
+    + logger: Logger
+  }
+  class AddOwnerForm {
+    + clinic: Clinic
+  }
+  class AddPetForm {
+    + clinic: Clinic
+  }
+  class AddVisitForm {
+    + clinic: Clinic
+  }
+  class BaseEntity {
+    + id: Integer
+  }
+  class CallMonitoringAspect {
+    + isEnabled: boolean
+    + callCount: int
+    + accumulatedCallTime: long
+  }
+  interface Clinic {
+  }
+  class ClinicBindingInitializer {
+    + clinic: Clinic
+  }
+  class ClinicController {
+    + clinic: Clinic
+  }
+  class EditOwnerForm {
+    + clinic: Clinic
+  }
+  class EditPetForm {
+    + clinic: Clinic
+  }
+  class EntityManagerClinic {
+    + em: EntityManager
+  }
+  class EntityUtils {
+  }
+  class FindOwnersForm {
+    + clinic: Clinic
+  }
+  class HibernateClinic {
+    + sessionFactory: SessionFactory
+  }
+  class JdbcPet {
+    + typeId: int
+    + ownerId: int
+  }
+  class NamedEntity {
+    + name: String
+  }
+  class Owner {
+    + address: String
+    + city: String
+    + telephone: String
+    + pets: Set
+  }
+  class OwnerValidator {
+  }
+  class Person {
+    + firstName: String
+    + lastName: String
+  }
+  class Pet {
+    + birthDate: Date
+    + type: PetType
+    + owner: Owner
+    + visits: Set
+  }
+  class PetType {
+  }
+  class PetTypeEditor {
+    + clinic: Clinic
+  }
+  class PetValidator {
+  }
+  class SimpleJdbcClinic {
+    + logger: Logger
+    + simpleJdbcTemplate: JdbcTemplate
+    + insertOwner: SimpleJdbcInsert
+    + insertPet: SimpleJdbcInsert
+    + insertVisit: SimpleJdbcInsert
+    + vets: List
+  }
+  interface SimpleJdbcClinicMBean {
+  }
+  class Specialty {
+  }
+  class UsageLogAspect {
+    + historySize: int
+    + namesRequested: List
+  }
+  class Vet {
+    + specialties: Set
+  }
+  class Vets {
+    + vets: List
+  }
+  class Visit {
+    + date: Date
+    + description: String
+    + pet: Pet
+  }
+  class VisitValidator {
+  }
+  class VisitsAtomView {
+  }
+}
+AppointmentBook <|..[#red,dotted] StubAppointmentBook
+AppointmentsController -[#red,dotted]-> AppointmentBook
+Measurement -[#red,dotted]-> Unit
+OwnerController -[#red,dotted]-> OwnerRepository
+OwnerRepository <|..[#red,dotted] StubOwnerRepository
+OwnersController -[#red,dotted]-> OwnerRepository
+Pet -[#red,dotted]-> Gender
+Pet -[#red,dotted]-> Measurement
+PetController -[#red,dotted]-> PetRepository
+PetRepository <|..[#red,dotted] StubPetRepository
+AddOwnerForm --> Clinic
+AddPetForm --> Clinic
+AddVisitForm --> Clinic
+BaseEntity <|-- NamedEntity
+BaseEntity <|-- Person
+BaseEntity <|-- Visit
+Clinic <|.. EntityManagerClinic
+Clinic <|.. HibernateClinic
+Clinic <|.. SimpleJdbcClinic
+ClinicBindingInitializer --> Clinic
+ClinicController --> Clinic
+EditOwnerForm --> Clinic
+EditPetForm --> Clinic
+FindOwnersForm --> Clinic
+NamedEntity <|-- Pet
+NamedEntity <|-- PetType
+NamedEntity <|-- Specialty
+Person <|-- Owner
+Person <|-- Vet
+Pet --> Owner
+Pet --> PetType
+Pet <|-- JdbcPet
+PetTypeEditor --> Clinic
+SimpleJdbcClinicMBean <|.. SimpleJdbcClinic
+Visit --> Pet
+@enduml

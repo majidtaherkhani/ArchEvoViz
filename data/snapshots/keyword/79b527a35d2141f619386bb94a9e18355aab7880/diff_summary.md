@@ -1,0 +1,58 @@
+# Commit 79b527a3
+- Date: 2024-12-27
+- Churn: 1393
+### Added classes
+- AIBeanConfiguration
+- AIDataProvider
+- FallbackController
+- GenAIServiceApplication
+- VectorStoreController
+### Unchanged classes
+- ApiGatewayApplication
+- ApiGatewayController
+- CacheConfig
+- ConfigServerApplication
+- CustomersServiceApplication
+- CustomersServiceClient
+- DiscoveryServerApplication
+- Mapper
+- MetricConfig
+- Owner
+- OwnerDetails
+- OwnerEntityMapper
+- OwnerRepository
+- OwnerResource
+- Pet
+- PetDetails
+- PetRepository
+- PetResource
+- PetType
+- ResourceNotFoundException
+- Specialty
+- SpringBootAdminApplication
+- Vet
+- VetRepository
+- VetResource
+- VetsProperties
+- VetsServiceApplication
+- Visit
+- VisitDetails
+- VisitRepository
+- VisitResource
+- Visits
+- VisitsServiceApplication
+- VisitsServiceClient
+
+### Unchanged relationships
+- ApiGatewayController --> CustomersServiceClient
+- ApiGatewayController --> VisitsServiceClient
+- Mapper <|.. OwnerEntityMapper
+- OwnerResource --> OwnerEntityMapper
+- OwnerResource --> OwnerRepository
+- Pet --> Owner
+- Pet --> PetType
+- PetDetails --> PetType
+- PetResource --> OwnerRepository
+- PetResource --> PetRepository
+- VetResource --> VetRepository
+- VisitResource --> VisitRepository

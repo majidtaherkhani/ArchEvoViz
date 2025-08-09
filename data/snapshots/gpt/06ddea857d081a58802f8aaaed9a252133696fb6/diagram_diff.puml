@@ -1,0 +1,189 @@
+@startuml
+skinparam classAttributeIconSize 0
+left to right direction
+package "Classes (Removed · Unchanged · Added)" <<Rectangle>> {
+  class BaseEntity <<REMOVED>> #LightSalmon {
+    + id: Integer
+  }
+  class ClientsServiceApplication <<REMOVED>> #LightSalmon {
+  }
+  class NamedEntity <<REMOVED>> #LightSalmon {
+    + name: String
+  }
+  class OwnerService <<REMOVED>> #LightSalmon {
+    + ownerRepository: OwnerRepository
+  }
+  class Person <<REMOVED>> #LightSalmon {
+    + firstName: String
+    + lastName: String
+  }
+  class PetService <<REMOVED>> #LightSalmon {
+    + petRepository: PetRepository
+  }
+  class PetValidator <<REMOVED>> #LightSalmon {
+  }
+  class VetService <<REMOVED>> #LightSalmon {
+    + vetRepository: VetRepository
+  }
+  class Vets <<REMOVED>> #LightSalmon {
+    + vets: List
+  }
+  class VisitService <<REMOVED>> #LightSalmon {
+    + visitRepository: VisitRepository
+  }
+  class ApiGatewayApplication {
+  }
+  class CacheConfig {
+    + vetsProperties: VetsProperties
+  }
+  class CallMonitoringAspect {
+    + enabled: boolean
+    + callCount: int
+    + accumulatedCallTime: long
+  }
+  class ConfigServerApplication {
+  }
+  class DiscoveryServerApplication {
+  }
+  class Monitored {
+  }
+  class MonitoringConfig {
+  }
+  class Owner {
+    + id: Integer
+    + firstName: String
+    + lastName: String
+    + address: String
+    + city: String
+    + telephone: String
+    + pets: Set
+  }
+  interface OwnerRepository {
+  }
+  class OwnerResource {
+    + ownerRepository: OwnerRepository
+  }
+  class Pet {
+    + id: Integer
+    + name: String
+    + birthDate: Date
+    + type: PetType
+    + owner: Owner
+  }
+  interface PetRepository {
+  }
+  class PetResource {
+    + petRepository: PetRepository
+    + ownerRepository: OwnerRepository
+  }
+  class PetType {
+    + id: Integer
+    + name: String
+  }
+  class Specialty {
+    + id: Integer
+    + name: String
+  }
+  class Vet {
+    + id: Integer
+    + firstName: String
+    + lastName: String
+    + specialties: Set
+  }
+  interface VetRepository {
+  }
+  class VetResource {
+    + vetRepository: VetRepository
+  }
+  class VetsProperties {
+    + cache: Cache
+  }
+  class VetsServiceApplication {
+  }
+  class Visit {
+    + id: Integer
+    + date: Date
+    + description: String
+    + petId: int
+  }
+  interface VisitRepository {
+  }
+  class VisitResource {
+    + visitRepository: VisitRepository
+  }
+  class VisitsServiceApplication {
+  }
+  class WebConfig {
+  }
+  class ApiGatewayController <<ADDED>> #LightGreen {
+    + customersServiceClient: CustomersServiceClient
+    + visitsServiceClient: VisitsServiceClient
+  }
+  class CustomersServiceApplication <<ADDED>> #LightGreen {
+  }
+  class CustomersServiceClient <<ADDED>> #LightGreen {
+    + loadBalancedRestTemplate: RestTemplate
+  }
+  class OwnerDetails <<ADDED>> #LightGreen {
+    + id: int
+    + firstName: String
+    + lastName: String
+    + address: String
+    + city: String
+    + telephone: String
+    + pets: List
+  }
+  class PetDetails <<ADDED>> #LightGreen {
+    + id: long
+    + name: String
+    + owner: String
+    + birthDate: Date
+    + type: PetType
+  }
+  class PetRequest <<ADDED>> #LightGreen {
+    + id: int
+    + birthDate: Date
+    + name: String
+    + typeId: int
+  }
+  class VisitDetails <<ADDED>> #LightGreen {
+    + id: int
+    + petId: int
+    + date: String
+    + description: String
+  }
+  class VisitsServiceClient <<ADDED>> #LightGreen {
+    + loadBalancedRestTemplate: RestTemplate
+  }
+  class ZipkinServer <<ADDED>> #LightGreen {
+  }
+}
+BaseEntity <|--[#red,dotted] NamedEntity
+BaseEntity <|--[#red,dotted] Person
+BaseEntity <|--[#red,dotted] Visit
+NamedEntity <|--[#red,dotted] Pet
+NamedEntity <|--[#red,dotted] PetType
+NamedEntity <|--[#red,dotted] Specialty
+OwnerResource -[#red,dotted]-> OwnerService
+OwnerService -[#red,dotted]-> OwnerRepository
+Person <|--[#red,dotted] Owner
+Person <|--[#red,dotted] Vet
+PetResource -[#red,dotted]-> OwnerService
+PetResource -[#red,dotted]-> PetService
+PetService -[#red,dotted]-> PetRepository
+VetResource -[#red,dotted]-> VetService
+VetService -[#red,dotted]-> VetRepository
+VisitResource -[#red,dotted]-> VisitService
+VisitService -[#red,dotted]-> VisitRepository
+CacheConfig --> VetsProperties
+Pet --> Owner
+Pet --> PetType
+ApiGatewayController -[#green,dotted]-> CustomersServiceClient
+ApiGatewayController -[#green,dotted]-> VisitsServiceClient
+OwnerResource -[#green,dotted]-> OwnerRepository
+PetDetails -[#green,dotted]-> PetType
+PetResource -[#green,dotted]-> OwnerRepository
+PetResource -[#green,dotted]-> PetRepository
+VetResource -[#green,dotted]-> VetRepository
+VisitResource -[#green,dotted]-> VisitRepository
+@enduml

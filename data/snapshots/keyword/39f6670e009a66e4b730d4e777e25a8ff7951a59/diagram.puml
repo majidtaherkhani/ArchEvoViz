@@ -1,0 +1,144 @@
+@startuml
+skinparam classAttributeIconSize 0
+left to right direction
+class SpringBootAdminApplication {
+}
+class ApiGatewayApplication {
+  + indexHtml: Resource
+}
+class CustomersServiceClient {
+  + webClientBuilder: WebClient
+}
+class VisitsServiceClient {
+  + hostname: String
+  + webClientBuilder: WebClient
+}
+class ApiGatewayController {
+  + customersServiceClient: CustomersServiceClient
+  + visitsServiceClient: VisitsServiceClient
+  + cbFactory: ReactiveCircuitBreakerFactory
+}
+class OwnerDetails {
+  + id: int
+  + firstName: String
+  + lastName: String
+  + address: String
+  + city: String
+  + telephone: String
+  + pets: List
+}
+class PetDetails {
+  + id: int
+  + name: String
+  + birthDate: String
+  + type: PetType
+  + visits: List
+}
+class PetType {
+  + name: String
+}
+class VisitDetails {
+  + id: Integer
+  + petId: Integer
+  + date: String
+  + description: String
+}
+class Visits {
+  + items: List
+}
+class ConfigServerApplication {
+}
+class CustomersServiceApplication {
+}
+class MetricConfig {
+}
+class Owner {
+  + id: Integer
+  + firstName: String
+  + lastName: String
+  + address: String
+  + city: String
+  + telephone: String
+  + pets: Set
+}
+interface OwnerRepository {
+}
+class Pet {
+  + id: Integer
+  + name: String
+  + birthDate: Date
+  + type: PetType
+  + owner: Owner
+}
+interface PetRepository {
+}
+class PetType {
+  + id: Integer
+  + name: String
+}
+class OwnerResource {
+  + ownerRepository: OwnerRepository
+  + ownerEntityMapper: OwnerEntityMapper
+}
+class PetResource {
+  + petRepository: PetRepository
+  + ownerRepository: OwnerRepository
+}
+class ResourceNotFoundException {
+}
+interface Mapper {
+}
+class OwnerEntityMapper {
+}
+class DiscoveryServerApplication {
+}
+class VetsServiceApplication {
+}
+class Specialty {
+  + id: Integer
+  + name: String
+}
+class Vet {
+  + id: Integer
+  + firstName: String
+  + lastName: String
+  + specialties: Set
+}
+interface VetRepository {
+}
+class CacheConfig {
+}
+class VetsProperties {
+  + cache: Cache
+}
+class VetResource {
+  + vetRepository: VetRepository
+}
+class VisitsServiceApplication {
+}
+class MetricConfig {
+}
+class Visit {
+  + id: Integer
+  + date: Date
+  + description: String
+  + petId: int
+}
+interface VisitRepository {
+}
+class VisitResource {
+  + visitRepository: VisitRepository
+}
+ApiGatewayController --> CustomersServiceClient
+ApiGatewayController --> VisitsServiceClient
+Mapper <|.. OwnerEntityMapper
+OwnerResource --> OwnerEntityMapper
+OwnerResource --> OwnerRepository
+Pet --> Owner
+Pet --> PetType
+PetDetails --> PetType
+PetResource --> OwnerRepository
+PetResource --> PetRepository
+VetResource --> VetRepository
+VisitResource --> VisitRepository
+@enduml

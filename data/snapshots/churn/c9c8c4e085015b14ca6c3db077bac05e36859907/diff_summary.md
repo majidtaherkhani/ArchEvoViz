@@ -1,0 +1,113 @@
+# Commit c9c8c4e0
+- Date: 2013-01-17
+- Churn: 2394
+### Added classes
+- ClinicService
+- ClinicServiceImpl
+- JdbcClinicImplMBean
+- JdbcOwnerRepositoryImpl
+- JdbcPetRepositoryImpl
+- JdbcPetRowMapper
+- JdbcVetRepositoryImpl
+- JdbcVisitRepositoryImpl
+- JpaClinicImpl
+- JpaOwnerRepositoryImpl
+- OwnerController
+- OwnerRepository
+- PetController
+- PetRepository
+- SpringDataClinic
+- SpringDataOwnerRepository
+- VetController
+- VetRepository
+- VisitController
+- VisitRepository
+### Removed classes
+- AddOwnerForm
+- AddPetForm
+- AddVisitForm
+- Clinic
+- ClinicController
+- EditOwnerForm
+- EditPetForm
+- EntityManagerClinic
+- FindOwnersForm
+- HibernateClinic
+- OwnerValidator
+- SimpleJdbcClinic
+- SimpleJdbcClinicMBean
+- VisitValidator
+### Unchanged classes
+- AbstractTraceAspect
+- BaseEntity
+- CallMonitoringAspect
+- ClinicBindingInitializer
+- EntityUtils
+- JdbcPet
+- NamedEntity
+- Owner
+- Person
+- Pet
+- PetType
+- PetTypeEditor
+- PetValidator
+- Specialty
+- UsageLogAspect
+- Vet
+- Vets
+- Visit
+- VisitsAtomView
+
+### Added relationships
+- ClinicBindingInitializer --> ClinicService
+- ClinicService <|-- SpringDataClinic
+- ClinicService <|.. ClinicServiceImpl
+- ClinicService <|.. JpaClinicImpl
+- ClinicServiceImpl --> OwnerRepository
+- ClinicServiceImpl --> PetRepository
+- ClinicServiceImpl --> VetRepository
+- ClinicServiceImpl --> VisitRepository
+- JdbcOwnerRepositoryImpl --> PetRepository
+- JdbcOwnerRepositoryImpl --> VisitRepository
+- JdbcPetRepositoryImpl --> OwnerRepository
+- JdbcPetRepositoryImpl --> VisitRepository
+- OwnerController --> OwnerRepository
+- OwnerRepository <|-- SpringDataOwnerRepository
+- OwnerRepository <|.. JdbcOwnerRepositoryImpl
+- OwnerRepository <|.. JpaOwnerRepositoryImpl
+- PetController --> ClinicService
+- PetRepository <|.. JdbcPetRepositoryImpl
+- PetTypeEditor --> ClinicService
+- VetController --> ClinicService
+- VetRepository <|.. JdbcVetRepositoryImpl
+- VisitController --> ClinicService
+- VisitRepository <|.. JdbcVisitRepositoryImpl
+
+### Removed relationships
+- AddOwnerForm --> Clinic
+- AddPetForm --> Clinic
+- AddVisitForm --> Clinic
+- Clinic <|.. EntityManagerClinic
+- Clinic <|.. HibernateClinic
+- Clinic <|.. SimpleJdbcClinic
+- ClinicBindingInitializer --> Clinic
+- ClinicController --> Clinic
+- EditOwnerForm --> Clinic
+- EditPetForm --> Clinic
+- FindOwnersForm --> Clinic
+- PetTypeEditor --> Clinic
+- SimpleJdbcClinicMBean <|.. SimpleJdbcClinic
+
+### Unchanged relationships
+- BaseEntity <|-- NamedEntity
+- BaseEntity <|-- Person
+- BaseEntity <|-- Visit
+- NamedEntity <|-- Pet
+- NamedEntity <|-- PetType
+- NamedEntity <|-- Specialty
+- Person <|-- Owner
+- Person <|-- Vet
+- Pet --> Owner
+- Pet --> PetType
+- Pet <|-- JdbcPet
+- Visit --> Pet

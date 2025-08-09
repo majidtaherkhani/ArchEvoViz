@@ -1,0 +1,118 @@
+@startuml
+skinparam classAttributeIconSize 0
+left to right direction
+class PetClinicApplication {
+}
+class OwnerResource {
+  + ownerService: OwnerService
+}
+class PetResource {
+  + petService: PetService
+  + ownerService: OwnerService
+}
+class PetValidator {
+}
+class VetResource {
+  + vetService: VetService
+}
+class VisitResource {
+  + visitService: VisitService
+  + petService: PetService
+}
+class Owner {
+  + address: String
+  + city: String
+  + telephone: String
+  + pets: Set
+}
+interface OwnerRepository {
+}
+class OwnerService {
+  + ownerRepository: OwnerRepository
+}
+class Pet {
+  + birthDate: Date
+  + type: PetType
+  + owner: Owner
+  + visits: Set
+}
+interface PetRepository {
+}
+class PetService {
+  + petRepository: PetRepository
+}
+class PetType {
+}
+class Specialty {
+}
+class Vet {
+  + specialties: Set
+}
+interface VetRepository {
+}
+class Vets {
+  + vets: List
+}
+class VetService {
+  + vetRepository: VetRepository
+}
+class Visit {
+  + date: Date
+  + description: String
+  + pet: Pet
+}
+interface VisitRepository {
+}
+class VisitService {
+  + visitRepository: VisitRepository
+}
+class Person {
+  + firstName: String
+  + lastName: String
+}
+class CallMonitoringAspect {
+  + enabled: boolean
+  + callCount: int
+  + accumulatedCallTime: long
+}
+class CacheConfig {
+}
+class PetclinicProperties {
+  + database: String
+}
+class WebConfig {
+}
+class BaseEntity {
+  + id: Integer
+}
+class NamedEntity {
+  + name: String
+}
+class AbstractResourceController {
+}
+AbstractResourceController <|-- OwnerResource
+AbstractResourceController <|-- PetResource
+AbstractResourceController <|-- VetResource
+AbstractResourceController <|-- VisitResource
+BaseEntity <|-- NamedEntity
+BaseEntity <|-- Person
+BaseEntity <|-- Visit
+NamedEntity <|-- Pet
+NamedEntity <|-- PetType
+NamedEntity <|-- Specialty
+OwnerResource --> OwnerService
+OwnerService --> OwnerRepository
+Person <|-- Owner
+Person <|-- Vet
+Pet --> Owner
+Pet --> PetType
+PetResource --> OwnerService
+PetResource --> PetService
+PetService --> PetRepository
+VetResource --> VetService
+VetService --> VetRepository
+Visit --> Pet
+VisitResource --> PetService
+VisitResource --> VisitService
+VisitService --> VisitRepository
+@enduml

@@ -1,0 +1,67 @@
+# Commit 30ca9b67
+- Date: 2016-11-12
+- Churn: 351
+### Added classes
+- ApiGatewayApplication
+- Monitored
+- MonitoringConfig
+- VetsProperties
+### Removed classes
+- AbstractResourceController
+- PetclinicProperties
+### Unchanged classes
+- BaseEntity
+- CacheConfig
+- CallMonitoringAspect
+- ClientsServiceApplication
+- ConfigServerApplication
+- DiscoveryServerApplication
+- NamedEntity
+- Owner
+- OwnerRepository
+- OwnerResource
+- OwnerService
+- Person
+- Pet
+- PetRepository
+- PetResource
+- PetService
+- PetType
+- PetValidator
+- Specialty
+- Vet
+- VetRepository
+- VetResource
+- VetService
+- Vets
+- VetsServiceApplication
+- Visit
+- VisitRepository
+- VisitResource
+- VisitService
+- VisitsServiceApplication
+- WebConfig
+
+### Added relationships
+- CacheConfig --> VetsProperties
+
+### Unchanged relationships
+- BaseEntity <|-- NamedEntity
+- BaseEntity <|-- Person
+- BaseEntity <|-- Visit
+- NamedEntity <|-- Pet
+- NamedEntity <|-- PetType
+- NamedEntity <|-- Specialty
+- OwnerResource --> OwnerService
+- OwnerService --> OwnerRepository
+- Person <|-- Owner
+- Person <|-- Vet
+- Pet --> Owner
+- Pet --> PetType
+- PetResource --> OwnerService
+- PetResource --> PetService
+- PetService --> PetRepository
+- VetResource --> VetService
+- VetService --> VetRepository
+- VisitResource --> VisitService
+- VisitService --> VisitRepository

@@ -1,0 +1,101 @@
+# Commit 5699bf83
+- Date: 2013-02-08
+- Churn: 1368
+### Added classes
+- CrashController
+- JpaPetRepositoryImpl
+- JpaVetRepositoryImpl
+- JpaVisitRepositoryImpl
+- PetTypeFormatter
+- SpringDataPetRepository
+- SpringDataVetRepository
+- SpringDataVisitRepository
+### Removed classes
+- AbstractTraceAspect
+- ClinicBindingInitializer
+- JdbcClinicImplMBean
+- JpaClinicImpl
+- PetTypeEditor
+- SpringDataClinic
+- SpringDataOwnerRepository
+- UsageLogAspect
+### Unchanged classes
+- BaseEntity
+- CallMonitoringAspect
+- ClinicService
+- ClinicServiceImpl
+- EntityUtils
+- JdbcOwnerRepositoryImpl
+- JdbcPet
+- JdbcPetRepositoryImpl
+- JdbcPetRowMapper
+- JdbcVetRepositoryImpl
+- JdbcVisitRepositoryImpl
+- JpaOwnerRepositoryImpl
+- NamedEntity
+- Owner
+- OwnerController
+- OwnerRepository
+- Person
+- Pet
+- PetController
+- PetRepository
+- PetType
+- PetValidator
+- Specialty
+- Vet
+- VetController
+- VetRepository
+- Vets
+- Visit
+- VisitController
+- VisitRepository
+- VisitsAtomView
+
+### Added relationships
+- PetRepository <|-- SpringDataPetRepository
+- PetRepository <|.. JpaPetRepositoryImpl
+- PetTypeFormatter --> ClinicService
+- VetRepository <|-- SpringDataVetRepository
+- VetRepository <|.. JpaVetRepositoryImpl
+- VisitRepository <|-- SpringDataVisitRepository
+- VisitRepository <|.. JpaVisitRepositoryImpl
+
+### Removed relationships
+- ClinicBindingInitializer --> ClinicService
+- ClinicService <|-- SpringDataClinic
+- ClinicService <|.. JpaClinicImpl
+- JdbcOwnerRepositoryImpl --> PetRepository
+- OwnerRepository <|-- SpringDataOwnerRepository
+- PetTypeEditor --> ClinicService
+
+### Unchanged relationships
+- BaseEntity <|-- NamedEntity
+- BaseEntity <|-- Person
+- BaseEntity <|-- Visit
+- ClinicService <|.. ClinicServiceImpl
+- ClinicServiceImpl --> OwnerRepository
+- ClinicServiceImpl --> PetRepository
+- ClinicServiceImpl --> VetRepository
+- ClinicServiceImpl --> VisitRepository
+- JdbcOwnerRepositoryImpl --> VisitRepository
+- JdbcPetRepositoryImpl --> OwnerRepository
+- JdbcPetRepositoryImpl --> VisitRepository
+- NamedEntity <|-- Pet
+- NamedEntity <|-- PetType
+- NamedEntity <|-- Specialty
+- OwnerController --> OwnerRepository
+- OwnerRepository <|.. JdbcOwnerRepositoryImpl
+- OwnerRepository <|.. JpaOwnerRepositoryImpl
+- Person <|-- Owner
+- Person <|-- Vet
+- Pet --> Owner
+- Pet --> PetType
+- Pet <|-- JdbcPet
+- PetController --> ClinicService
+- PetRepository <|.. JdbcPetRepositoryImpl
+- VetController --> ClinicService
+- VetRepository <|.. JdbcVetRepositoryImpl
+- Visit --> Pet
+- VisitController --> ClinicService
+- VisitRepository <|.. JdbcVisitRepositoryImpl

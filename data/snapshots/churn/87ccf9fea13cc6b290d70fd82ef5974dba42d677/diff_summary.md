@@ -1,0 +1,98 @@
+# Commit 87ccf9fe
+- Date: 2013-01-09
+- Churn: 2267
+### Removed classes
+- Appointment
+- AppointmentBook
+- AppointmentForm
+- Appointments
+- AppointmentsController
+- DbcpDataSourceFactory
+- EssentialsHSQLPlatformWithNativeSequence
+- ExternalContext
+- Gender
+- HomeController
+- Measurement
+- OwnerController
+- OwnerRepository
+- OwnerSearchForm
+- OwnersController
+- PetController
+- PetRepository
+- StubAppointmentBook
+- StubOwnerRepository
+- StubPetRepository
+- Unit
+### Unchanged classes
+- AbstractTraceAspect
+- AddOwnerForm
+- AddPetForm
+- AddVisitForm
+- BaseEntity
+- CallMonitoringAspect
+- Clinic
+- ClinicBindingInitializer
+- ClinicController
+- EditOwnerForm
+- EditPetForm
+- EntityManagerClinic
+- EntityUtils
+- FindOwnersForm
+- HibernateClinic
+- JdbcPet
+- NamedEntity
+- Owner
+- OwnerValidator
+- Person
+- Pet
+- PetType
+- PetTypeEditor
+- PetValidator
+- SimpleJdbcClinic
+- SimpleJdbcClinicMBean
+- Specialty
+- UsageLogAspect
+- Vet
+- Vets
+- Visit
+- VisitValidator
+- VisitsAtomView
+
+### Removed relationships
+- AppointmentBook <|.. StubAppointmentBook
+- AppointmentsController --> AppointmentBook
+- Measurement --> Unit
+- OwnerController --> OwnerRepository
+- OwnerRepository <|.. StubOwnerRepository
+- OwnersController --> OwnerRepository
+- Pet --> Gender
+- Pet --> Measurement
+- PetController --> PetRepository
+- PetRepository <|.. StubPetRepository
+
+### Unchanged relationships
+- AddOwnerForm --> Clinic
+- AddPetForm --> Clinic
+- AddVisitForm --> Clinic
+- BaseEntity <|-- NamedEntity
+- BaseEntity <|-- Person
+- BaseEntity <|-- Visit
+- Clinic <|.. EntityManagerClinic
+- Clinic <|.. HibernateClinic
+- Clinic <|.. SimpleJdbcClinic
+- ClinicBindingInitializer --> Clinic
+- ClinicController --> Clinic
+- EditOwnerForm --> Clinic
+- EditPetForm --> Clinic
+- FindOwnersForm --> Clinic
+- NamedEntity <|-- Pet
+- NamedEntity <|-- PetType
+- NamedEntity <|-- Specialty
+- Person <|-- Owner
+- Person <|-- Vet
+- Pet --> Owner
+- Pet --> PetType
+- Pet <|-- JdbcPet
+- PetTypeEditor --> Clinic
+- SimpleJdbcClinicMBean <|.. SimpleJdbcClinic
+- Visit --> Pet

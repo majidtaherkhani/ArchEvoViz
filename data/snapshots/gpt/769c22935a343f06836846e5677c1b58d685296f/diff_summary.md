@@ -1,0 +1,51 @@
+# Commit 769c2293
+- Date: 2016-12-14
+- Churn: 819
+### Unchanged classes
+- ApiGatewayApplication
+- ApiGatewayController
+- CacheConfig
+- CallMonitoringAspect
+- ConfigServerApplication
+- CustomersServiceApplication
+- CustomersServiceClient
+- DiscoveryServerApplication
+- Monitored
+- MonitoringConfig
+- Owner
+- OwnerDetails
+- OwnerRepository
+- OwnerResource
+- Pet
+- PetDetails
+- PetRepository
+- PetRequest
+- PetResource
+- PetType
+- Specialty
+- Vet
+- VetRepository
+- VetResource
+- VetsProperties
+- VetsServiceApplication
+- Visit
+- VisitDetails
+- VisitRepository
+- VisitResource
+- VisitsServiceApplication
+- VisitsServiceClient
+- WebConfig
+- ZipkinServer
+
+### Unchanged relationships
+- ApiGatewayController --> CustomersServiceClient
+- ApiGatewayController --> VisitsServiceClient
+- CacheConfig --> VetsProperties
+- OwnerResource --> OwnerRepository
+- Pet --> Owner
+- Pet --> PetType
+- PetDetails --> PetType
+- PetResource --> OwnerRepository
+- PetResource --> PetRepository
+- VetResource --> VetRepository
+- VisitResource --> VisitRepository

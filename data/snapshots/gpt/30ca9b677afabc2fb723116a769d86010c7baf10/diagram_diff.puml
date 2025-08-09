@@ -1,0 +1,131 @@
+@startuml
+skinparam classAttributeIconSize 0
+left to right direction
+package "Classes (Removed · Unchanged · Added)" <<Rectangle>> {
+  class AbstractResourceController <<REMOVED>> #LightSalmon {
+  }
+  class PetclinicProperties <<REMOVED>> #LightSalmon {
+    + database: String
+  }
+  class BaseEntity {
+    + id: Integer
+  }
+  class CacheConfig {
+    + vetsProperties: VetsProperties
+  }
+  class CallMonitoringAspect {
+    + enabled: boolean
+    + callCount: int
+    + accumulatedCallTime: long
+  }
+  class ClientsServiceApplication {
+  }
+  class ConfigServerApplication {
+  }
+  class DiscoveryServerApplication {
+  }
+  class NamedEntity {
+    + name: String
+  }
+  class Owner {
+    + address: String
+    + city: String
+    + telephone: String
+    + pets: Set
+  }
+  interface OwnerRepository {
+  }
+  class OwnerResource {
+    + ownerService: OwnerService
+  }
+  class OwnerService {
+    + ownerRepository: OwnerRepository
+  }
+  class Person {
+    + firstName: String
+    + lastName: String
+  }
+  class Pet {
+    + birthDate: Date
+    + type: PetType
+    + owner: Owner
+  }
+  interface PetRepository {
+  }
+  class PetResource {
+    + petService: PetService
+    + ownerService: OwnerService
+  }
+  class PetService {
+    + petRepository: PetRepository
+  }
+  class PetType {
+  }
+  class PetValidator {
+  }
+  class Specialty {
+  }
+  class Vet {
+    + specialties: Set
+  }
+  interface VetRepository {
+  }
+  class VetResource {
+    + vetService: VetService
+  }
+  class VetService {
+    + vetRepository: VetRepository
+  }
+  class Vets {
+    + vets: List
+  }
+  class VetsServiceApplication {
+  }
+  class Visit {
+    + date: Date
+    + description: String
+    + petId: int
+  }
+  interface VisitRepository {
+  }
+  class VisitResource {
+    + visitService: VisitService
+  }
+  class VisitService {
+    + visitRepository: VisitRepository
+  }
+  class VisitsServiceApplication {
+  }
+  class WebConfig {
+  }
+  class ApiGatewayApplication <<ADDED>> #LightGreen {
+  }
+  class Monitored <<ADDED>> #LightGreen {
+  }
+  class MonitoringConfig <<ADDED>> #LightGreen {
+  }
+  class VetsProperties <<ADDED>> #LightGreen {
+    + cache: Cache
+  }
+}
+BaseEntity <|-- NamedEntity
+BaseEntity <|-- Person
+BaseEntity <|-- Visit
+NamedEntity <|-- Pet
+NamedEntity <|-- PetType
+NamedEntity <|-- Specialty
+OwnerResource --> OwnerService
+OwnerService --> OwnerRepository
+Person <|-- Owner
+Person <|-- Vet
+Pet --> Owner
+Pet --> PetType
+PetResource --> OwnerService
+PetResource --> PetService
+PetService --> PetRepository
+VetResource --> VetService
+VetService --> VetRepository
+VisitResource --> VisitService
+VisitService --> VisitRepository
+CacheConfig -[#green,dotted]-> VetsProperties
+@enduml

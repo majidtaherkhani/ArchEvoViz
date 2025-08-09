@@ -1,0 +1,108 @@
+@startuml
+skinparam classAttributeIconSize 0
+left to right direction
+package "Classes (Removed · Unchanged · Added)" <<Rectangle>> {
+  class VisitController <<REMOVED>> #LightSalmon {
+    + clinicService: ClinicService
+  }
+  class BaseEntity {
+    + id: Integer
+  }
+  class CallMonitoringAspect {
+    + enabled: boolean
+    + callCount: int
+    + accumulatedCallTime: long
+  }
+  interface ClinicService {
+  }
+  class ClinicServiceImpl {
+    + petRepository: PetRepository
+    + vetRepository: VetRepository
+    + ownerRepository: OwnerRepository
+    + visitRepository: VisitRepository
+  }
+  class NamedEntity {
+    + name: String
+  }
+  class Owner {
+    + address: String
+    + city: String
+    + telephone: String
+    + pets: Set
+  }
+  interface OwnerRepository {
+  }
+  class OwnerResource {
+    + clinicService: ClinicService
+  }
+  class Person {
+    + firstName: String
+    + lastName: String
+  }
+  class Pet {
+    + birthDate: Date
+    + type: PetType
+    + owner: Owner
+    + visits: Set
+  }
+  class PetClinicApplication {
+  }
+  interface PetRepository {
+  }
+  class PetResource {
+    + clinicService: ClinicService
+  }
+  class PetType {
+  }
+  class PetValidator {
+  }
+  class Specialty {
+  }
+  class Vet {
+    + specialties: Set
+  }
+  interface VetRepository {
+  }
+  class VetResource {
+    + clinicService: ClinicService
+  }
+  class Vets {
+    + vets: List
+  }
+  class Visit {
+    + date: Date
+    + description: String
+    + pet: Pet
+  }
+  interface VisitRepository {
+  }
+  class CacheConfig <<ADDED>> #LightGreen {
+  }
+  class VisitResource <<ADDED>> #LightGreen {
+    + clinicService: ClinicService
+  }
+  class WebConfig <<ADDED>> #LightGreen {
+  }
+}
+VisitController -[#red,dotted]-> ClinicService
+BaseEntity <|-- NamedEntity
+BaseEntity <|-- Person
+BaseEntity <|-- Visit
+ClinicService <|.. ClinicServiceImpl
+ClinicServiceImpl --> OwnerRepository
+ClinicServiceImpl --> PetRepository
+ClinicServiceImpl --> VetRepository
+ClinicServiceImpl --> VisitRepository
+NamedEntity <|-- Pet
+NamedEntity <|-- PetType
+NamedEntity <|-- Specialty
+OwnerResource --> ClinicService
+Person <|-- Owner
+Person <|-- Vet
+Pet --> Owner
+Pet --> PetType
+PetResource --> ClinicService
+VetResource --> ClinicService
+Visit --> Pet
+VisitResource -[#green,dotted]-> ClinicService
+@enduml
