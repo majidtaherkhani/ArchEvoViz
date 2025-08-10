@@ -3,7 +3,7 @@ Demonstration case study in our paper: spring-projects/spring-petclinic, showcas
 
 # Key Features
 - Three commit‑selection strategies: churn‑based, keyword‑based, and LLM‑assisted ranking.
-- UML directly from source code (Java) — parse AST with javalang, emit PlantUML
+- UML directly from source code (Java), parse AST with javalang, emit PlantUML
 - Diff diagrams with clear semantics:
   - Added classes/relations → light green with green dotted edges.
   - Removed classes/relations → salmon with red dotted edges.
@@ -45,7 +45,7 @@ python main.py
 - Tune keywords via KEYWORD_REGEX.
 - Switch models by editing gpt_arch_commits / build_final_report (e.g., gpt-4o-mini for cheaper runs).
 # Output Location
-All generated snapshots, UML diagrams, diffs, metrics, and reports are stored in the data/ folder:
+All generated snapshots, UML diagrams, diffs, metrics, and reports are stored in the data folder:
 ```text
 data/
 └─ snapshots/
